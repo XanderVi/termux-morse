@@ -75,6 +75,7 @@ while True:
                 else:
                     time.sleep(DOT_TIME*2)
         else:
+            '''
             for i in encrypted:
                 if i == '.':
                     dot_vibrate()
@@ -84,3 +85,5 @@ while True:
                     time.sleep(DOT_TIME*4)
                 else:
                     time.sleep(DOT_TIME*2)
+            '''
+            print('Sorry, the vibration module is under repair.')

@@ -4,13 +4,13 @@ import subprocess
 '''
 MAIN INFO:
 One '-' has the same time length as 3 '.'
-In this version they are: 0.9 sec / 0.3 sec
+In this version they are: 0.3 sec / 0.1 sec
 Time between symbols of one letter == time of 1 '.'
 Time between symbols of one word == time of 2 '.'
 Time between two separate words == time of 6 '.'
 '''
 
-DOT_TIME = 0.3 # 0.3 seconds
+DOT_TIME = 0.1 # 0.1 seconds
 
 MORSE = {'a': '.-',    'b': '-...',  'c': '-.-.',
          'd': '-..',   'e': '.',     'f': '..-.',
@@ -54,12 +54,10 @@ def dot_light():
     time.sleep(DOT_TIME)
 
 def dash_vibrate():
-    subprocess.Popen(['termux-vibrate -d ' + str(DOT_TIME*3*1000)], shell=True)
-    time.sleep(DOT_TIME)
+    subprocess.Popen(['termux-vibrate -d ' + str(DOT_TIME*3000)], shell=True)
 
 def dot_vibrate():
     subprocess.Popen(['termux-vibrate -d ' + str(DOT_TIME*1000)], shell=True)
-    time.sleep(DOT_TIME)
 
 while True:
     method = input('Choose a method: type l to use light, v to use vibrate or e to exit: ')
@@ -80,7 +78,9 @@ while True:
             for i in encrypted:
                 if i == '.':
                     dot_vibrate()
+                    time.sleep(DOT_TIME)
                 elif i == '-':
                     dash_vibrate()
+                    time.sleep(DOT_TIME*4)
                 else:
                     time.sleep(DOT_TIME*2)
